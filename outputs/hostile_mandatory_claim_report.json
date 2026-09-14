@@ -1,0 +1,98 @@
+{
+  "decision": "SAFE_STOP",
+  "evaluation_complete": false,
+  "publication_authorised": false,
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "Every organization is required to obtain NIST AI RMF certification [NIST-AI-RMF].",
+      "citations": [
+        "NIST-AI-RMF"
+      ],
+      "support_score": 0.75,
+      "status": "CONTRADICTED",
+      "reason": "claim converts voluntary guidance into a requirement"
+    }
+  ],
+  "findings": [
+    {
+      "code": "MATERIAL_CONTRADICTION",
+      "severity": "CRITICAL",
+      "detail": "one or more claims conflict with cited evidence"
+    }
+  ],
+  "audit": [
+    {
+      "sequence": 1,
+      "node": "task_intake",
+      "status": "PASS",
+      "detail": "query and proposed answer received"
+    },
+    {
+      "sequence": 2,
+      "node": "provenance",
+      "status": "PASS",
+      "detail": "verified 1 source record(s)"
+    },
+    {
+      "sequence": 3,
+      "node": "retrieval",
+      "status": "PASS",
+      "detail": "received 1 passage(s)"
+    },
+    {
+      "sequence": 4,
+      "node": "omission_gate",
+      "status": "PASS",
+      "detail": "required-evidence coverage checked"
+    },
+    {
+      "sequence": 5,
+      "node": "temporal_validity",
+      "status": "PASS",
+      "detail": "source age checked"
+    },
+    {
+      "sequence": 6,
+      "node": "passage_relevance",
+      "status": "PASS",
+      "detail": "query\u2013passage relevance measured"
+    },
+    {
+      "sequence": 7,
+      "node": "claim_atomisation",
+      "status": "PASS",
+      "detail": "created 1 claim record(s)"
+    },
+    {
+      "sequence": 8,
+      "node": "claim_support",
+      "status": "PASS",
+      "detail": "claim\u2013source support evaluated"
+    },
+    {
+      "sequence": 9,
+      "node": "contradiction",
+      "status": "FAIL",
+      "detail": "explicit contradiction patterns evaluated"
+    },
+    {
+      "sequence": 10,
+      "node": "authority_quality",
+      "status": "PASS",
+      "detail": "source authority matched to consequence"
+    },
+    {
+      "sequence": 11,
+      "node": "governance",
+      "status": "SAFE_STOP",
+      "detail": "evidence-bound decision issued"
+    },
+    {
+      "sequence": 12,
+      "node": "publication_authority",
+      "status": "NOT_AUTHORISED",
+      "detail": "approval cannot repair evidence failure"
+    }
+  ]
+}
