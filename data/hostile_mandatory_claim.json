@@ -1,0 +1,31 @@
+{
+  "case_id": "HOSTILE-MANDATE-001",
+  "query": "Must every organization obtain NIST AI RMF certification?",
+  "answer": "Every organization is required to obtain NIST AI RMF certification [NIST-AI-RMF].",
+  "consequence": "high",
+  "as_of_date": "2026-09-14",
+  "max_source_age_days": 2000,
+  "human_approval": true,
+  "required_evidence_ids": ["NIST-AI-RMF"],
+  "sources": [
+    {
+      "id": "NIST-AI-RMF",
+      "title": "AI Risk Management Framework",
+      "publisher": "National Institute of Standards and Technology",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "published_at": "2023-01-26",
+      "retrieved_at": "2026-09-14",
+      "authority": "primary",
+      "content": "NIST describes AI RMF 1.0 as intended for voluntary use. It helps organizations incorporate trustworthiness considerations into the design, development, use, and evaluation of AI systems. The cited framework does not itself establish a mandatory certification requirement.",
+      "content_sha256": "117a4bb646d89eec78abac8af38e182acc6e2291138e3c4c355c60292de5672d"
+    }
+  ],
+  "retrieved_passages": [
+    {
+      "passage_id": "P1",
+      "source_id": "NIST-AI-RMF",
+      "rank": 1,
+      "text": "NIST describes AI RMF 1.0 as intended for voluntary use. It helps organizations incorporate trustworthiness considerations into the design, development, use, and evaluation of AI systems. The cited framework does not itself establish a mandatory certification requirement."
+    }
+  ]
+}
