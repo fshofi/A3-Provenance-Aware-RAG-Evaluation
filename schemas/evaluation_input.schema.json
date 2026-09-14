@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "A3 evaluation input",
+  "type": "object",
+  "required": ["case_id", "query", "answer", "consequence", "sources", "retrieved_passages"],
+  "properties": {
+    "case_id": {"type": "string", "minLength": 1},
+    "query": {"type": "string", "minLength": 1},
+    "answer": {"type": "string", "minLength": 1},
+    "consequence": {"enum": ["low", "moderate", "high"]},
+    "human_approval": {"type": "boolean"},
+    "required_evidence_ids": {"type": "array", "items": {"type": "string"}},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "publisher", "url", "authority", "content", "content_sha256"],
+        "properties": {
+          "id": {"type": "string"},
+          "authority": {"enum": ["primary", "secondary", "low"]},
+          "content_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+        }
+      }
+    },
+    "retrieved_passages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["passage_id", "source_id", "rank", "text"]
+      }
+    }
+  }
+}
