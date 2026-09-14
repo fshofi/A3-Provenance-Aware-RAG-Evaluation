@@ -33,6 +33,8 @@ Official source: https://www.nist.gov/itl/ai-risk-management-framework
 
 `evaluation_complete` and `publication_authorised` are separate fields. Approval cannot repair defective evidence.
 
+The browser dashboard also includes one restrained Plotly evidence-to-publication gate. It visualises provenance, retrieval, citation, support, contradiction, temporal validity and publication authority as categorical PASS / REVIEW / FAIL states. These visual states are not truth probabilities and do not alter the evaluator decision.
+
 ## V1 limitations
 
 - Claim atomisation is sentence-based.
