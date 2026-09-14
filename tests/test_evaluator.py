@@ -131,5 +131,85 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(result["audit"][-1]["status"], "NOT_AUTHORISED")
 
 
+    def test_fabio_causal_overclaim_is_contradicted(self):
+        case = load_reference()
+        content = (
+            "Resolution time fell from 10 minutes to 7 minutes after a process change. "
+            "The study was observational and does not establish that the process change caused the reduction."
+        )
+        source = case["sources"][0]
+        source["content"] = content
+        resign(source)
+        case["retrieved_passages"][0]["text"] = content
+        case["answer"] = "The process change caused resolution time to fall from 10 to 7 minutes [NIST-AI-RMF]."
+        case["required_evidence_ids"] = []
+        result = evaluate_case(case)
+        self.assertEqual(result["claims"][0]["status"], "CONTRADICTED")
+        self.assertEqual(result["decision"], "INSUFFICIENT_EVIDENCE")
+        self.assertFalse(result["publication_authorised"])
+
+    def test_fabio_explicit_no_causation_is_not_supported(self):
+        case = load_reference()
+        content = (
+            "Resolution time fell from 10 minutes to 7 minutes. "
+            "The evidence does not permit concluding causation."
+        )
+        source = case["sources"][0]
+        source["content"] = content
+        resign(source)
+        case["retrieved_passages"][0]["text"] = content
+        case["answer"] = "The intervention caused resolution time to fall from 10 to 7 minutes [NIST-AI-RMF]."
+        case["required_evidence_ids"] = []
+        result = evaluate_case(case)
+        self.assertEqual(result["claims"][0]["status"], "CONTRADICTED")
+        self.assertNotEqual(result["decision"], "SUPPORTED")
+
+    def test_fabio_directional_numeric_inversion_is_contradicted(self):
+        case = load_reference()
+        content = "Resolution time decreased from 10 minutes to 7 minutes in the measured period."
+        source = case["sources"][0]
+        source["content"] = content
+        resign(source)
+        case["retrieved_passages"][0]["text"] = content
+        case["answer"] = "Resolution time increased from 7 minutes to 10 minutes [NIST-AI-RMF]."
+        case["required_evidence_ids"] = []
+        result = evaluate_case(case)
+        self.assertEqual(result["claims"][0]["status"], "CONTRADICTED")
+        self.assertNotEqual(result["decision"], "SUPPORTED")
+
+    def test_fabio_related_but_absent_evidence_is_neutral(self):
+        case = load_reference()
+        content = (
+            "Customer volume grew by 20 percent during the period. "
+            "The report does not provide data on resolution time."
+        )
+        source = case["sources"][0]
+        source["content"] = content
+        resign(source)
+        case["retrieved_passages"][0]["text"] = content
+        case["answer"] = "Resolution time improved by 20 percent [NIST-AI-RMF]."
+        case["required_evidence_ids"] = []
+        result = evaluate_case(case)
+        self.assertEqual(result["claims"][0]["status"], "NEUTRAL")
+        self.assertEqual(result["decision"], "INSUFFICIENT_EVIDENCE")
+        self.assertFalse(result["publication_authorised"])
+
+    def test_fabio_scope_overreach_is_not_supported(self):
+        case = load_reference()
+        content = (
+            "Resolution time fell from 10 minutes to 7 minutes in the selected comparable cases. "
+            "Complex cases were excluded and the populations were not comparable."
+        )
+        source = case["sources"][0]
+        source["content"] = content
+        resign(source)
+        case["retrieved_passages"][0]["text"] = content
+        case["answer"] = "Resolution time fell from 10 to 7 minutes across all cases [NIST-AI-RMF]."
+        case["required_evidence_ids"] = []
+        result = evaluate_case(case)
+        self.assertEqual(result["claims"][0]["status"], "CONTRADICTED")
+        self.assertNotEqual(result["decision"], "SUPPORTED")
+
+
 if __name__ == "__main__":
     unittest.main()
