@@ -20,17 +20,73 @@ def _event(audit: list[dict[str, Any]], node: str, status: str, detail: str) -> 
     audit.append({"sequence": len(audit) + 1, "node": node, "status": status, "detail": detail})
 
 
+def _ordered_numbers(text: str) -> list[str]:
+    return re.findall(r"(?<![A-Za-z])\d+(?:\.\d+)?%?", text)
+
+
 def _contradiction(claim: str, passage: str) -> str | None:
     c, p = tokens(claim), tokens(passage)
     claim_lower = claim.lower()
+    passage_lower = passage.lower()
+
     negated_requirement = bool(re.search(r"(?:not|does\s+not|no)\b.{0,35}\b(?:require|required|requirement|mandatory|certif)", claim_lower))
     if "require" in c and "voluntary" in p and "voluntary" not in c and not negated_requirement:
         return "claim converts voluntary guidance into a requirement"
     if "voluntary" in c and "require" in p and "voluntary" not in p:
         return "claim describes a requirement as voluntary"
+
+    causal_claim = bool(re.search(r"\b(cause|causes|caused|causal|because of|led to|leads to|resulted in|drives?|produced)\b", claim_lower))
+    causal_denial = bool(re.search(r"\b(cannot|can not|does not|did not|no)\b.{0,45}\b(caus|attribut|establish|infer)", passage_lower)) or bool(
+        re.search(r"\b(association|correlation|observational)\b.{0,55}\b(?:not|cannot|does not)\b.{0,35}\bcaus", passage_lower)
+    )
+    if causal_claim and causal_denial:
+        return "claim asserts causation where the cited evidence explicitly withholds causal inference"
+
+    universal_claim = bool(re.search(r"\b(all|every|across all|universally|general(?:ise|ize|ises|izes|ised|ized))\b", claim_lower))
+    scope_limit = bool(re.search(r"\b(exclud(?:e|ed|es|ing)|non-comparable|not comparable|cannot general(?:ise|ize)|limited to|selected cases|subset)\b", passage_lower))
+    if universal_claim and scope_limit:
+        return "claim exceeds an explicit scope or comparability limitation in the cited evidence"
+
     cn, pn = numbers(claim), numbers(passage)
     if cn and pn and cn.isdisjoint(pn):
         return f"incompatible numeric values: claim={sorted(cn)}, passage={sorted(pn)}"
+
+    cseq, pseq = _ordered_numbers(claim), _ordered_numbers(passage)
+    if len(cseq) >= 2 and len(pseq) >= 2 and set(cseq[:2]) == set(pseq[:2]) and cseq[:2] == list(reversed(pseq[:2])):
+        return f"directional numeric relation is reversed: claim={cseq[:2]}, passage={pseq[:2]}"
+
+    opposite_direction = (
+        bool(re.search(r"\b(increase|increased|rose|rise|higher|grew|growth)\b", claim_lower))
+        and bool(re.search(r"\b(decrease|decreased|fell|reduced|reduction|lower)\b", passage_lower))
+    ) or (
+        bool(re.search(r"\b(decrease|decreased|fell|reduced|reduction|lower)\b", claim_lower))
+        and bool(re.search(r"\b(increase|increased|rose|rise|higher|grew|growth)\b", passage_lower))
+    )
+    if opposite_direction and cn and pn and not cn.isdisjoint(pn):
+        return "claim reverses the direction of the cited quantitative change"
+    return None
+
+
+def _neutral_reason(claim: str, passage: str) -> str | None:
+    claim_lower = claim.lower()
+    passage_lower = passage.lower()
+
+    absence = re.search(
+        r"\b(?:does not|did not|cannot|can not|no)\b.{0,55}\b(?:contain|include|provide|report|measure|record|show|give)\b.{0,55}\b(?:data|evidence|information|measure|metric|result)",
+        passage_lower,
+    )
+    if absence:
+        claim_terms = tokens(claim)
+        passage_terms = tokens(passage)
+        shared = claim_terms & passage_terms
+        if len(shared) >= 2:
+            return "cited passage is topically related but explicitly states that the required evidence is absent"
+
+    qualification = bool(re.search(r"\b(exclud(?:e|ed|es|ing)|non-comparable|not comparable|limited to|selected cases|subset)\b", passage_lower))
+    overreach = bool(re.search(r"\b(all|every|across all|universally|general(?:ise|ize|ises|izes|ised|ized))\b", claim_lower))
+    if qualification and overreach:
+        return "cited passage is related but does not support the claim beyond its stated scope"
+
     return None
 
 
@@ -135,22 +191,26 @@ def evaluate_case(case: dict[str, Any]) -> dict[str, Any]:
             blocking = True
             continue
         candidate_passages = [p for source_id in cited for p in passage_by_source.get(source_id, [])]
-        best_score, contradiction = 0.0, None
+        best_score, contradiction, neutral_reason = 0.0, None, None
         for passage in candidate_passages:
             text = str(passage.get("text", ""))
             best_score = max(best_score, overlap_score(claim, text))
             contradiction = contradiction or _contradiction(claim, text)
+            neutral_reason = neutral_reason or _neutral_reason(claim, text)
         claim_tokens = tokens(claim)
         passage_tokens = set().union(*(tokens(str(p.get("text", ""))) for p in candidate_passages)) if candidate_passages else set()
         high_stakes_novel = sorted(({"guarantee", "safe", "certify", "illegal", "prohibit", "approve"} & claim_tokens) - passage_tokens)
         if contradiction:
             status, reason = "CONTRADICTED", contradiction
             contradicted = True
+        elif neutral_reason:
+            status, reason = "NEUTRAL", neutral_reason
+            unsupported = True
         elif high_stakes_novel:
             status, reason = "UNSUPPORTED", f"material terms absent from cited evidence: {', '.join(high_stakes_novel)}"
             unsupported = True
         elif best_score >= float(case.get("support_threshold", 0.35)):
-            status, reason = "SUPPORTED", "cited passage clears bounded lexical-support threshold"
+            status, reason = "SUPPORTED", "cited passage clears bounded lexical-support threshold after contradiction and neutral-evidence checks"
         elif best_score >= 0.18:
             status, reason = "PARTIAL", "some overlap exists, but support is incomplete"
             unsupported = True
