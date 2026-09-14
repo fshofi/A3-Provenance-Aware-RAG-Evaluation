@@ -33,6 +33,10 @@ Official source: https://www.nist.gov/itl/ai-risk-management-framework
 
 `evaluation_complete` and `publication_authorised` are separate fields. Approval cannot repair defective evidence.
 
+## Independent adversarial regression — 14 September 2026
+
+An external interface-level review by Fábio Borges identified reproducible cases where lexical/topical overlap could be mistaken for evidential support. The bounded evaluator has since been hardened to distinguish explicit contradiction and related-but-not-informative evidence before lexical support is considered. Five permanent regression tests now cover causal overclaim, explicit causal denial, directional numeric inversion, absent required evidence, and scope/comparability overreach. The full unit suite passes in GitHub Actions (22/22 tests).
+
 The browser dashboard also includes one restrained Plotly evidence-to-publication gate. It visualises provenance, retrieval, citation, support, contradiction, temporal validity and publication authority as categorical PASS / REVIEW / FAIL states. These visual states are not truth probabilities and do not alter the evaluator decision.
 
 ## V1 limitations
