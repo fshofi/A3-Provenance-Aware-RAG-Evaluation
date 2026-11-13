@@ -1,3 +1,13 @@
+# RAG Answer Evidence Review — CVDNA A3
+
+Trace generated claims to their supplied passages, expose evidence gaps, and give a reviewer a clear publication decision.
+
+**Commercial use:** a bounded review led by Shofi Ahmed Uddin, supported by reproducible software. [Pilot scope](SERVICE_OFFER.md) · [Interactive demonstration](dashboard/index.html) · [Current verification](dashboard/verification.md).
+
+Human-reviewed service. Lexical similarity is not entailment. Source hashes check consistency of supplied records, not publisher authenticity or truth.
+
+---
+
 # Project A Pro — A3
 
 ## Provenance-Aware RAG / Semantic Search Evaluation
