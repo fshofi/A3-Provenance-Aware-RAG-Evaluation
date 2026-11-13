@@ -1,0 +1,1339 @@
+{
+  "summary": {
+    "n": 60,
+    "counts": {
+      "tp": 5,
+      "fp": 0,
+      "tn": 45,
+      "fn": 10
+    },
+    "support_precision": 1.0,
+    "support_recall": 0.3333333333333333,
+    "accuracy": 0.8333333333333334,
+    "dataset_sha256": "1d2de95756b52c77cb152f209c46909885fa6577af187c81b0b81e7b3cd2c693",
+    "scope": "60 synthetic cases; 12 templates with 5 variants each; related cases are not independent; no held-out or production validity claim",
+    "decision": "Human-reviewed evidence review only; automatic semantic assurance not established"
+  },
+  "cases": [
+    {
+      "id": "direct-1",
+      "family": "direct",
+      "expected": "SUPPORTED",
+      "passage": "The Aster trial enrolled 20 participants.",
+      "claim": "The Aster trial enrolled 20 participants.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "QUALIFIED",
+      "category": "tp",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Aster trial enrolled 20 participants [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.8333,
+          "status": "SUPPORTED",
+          "reason": "cited passage clears bounded lexical-support threshold after contradiction and neutral-evidence checks"
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-1",
+      "family": "paraphrase",
+      "expected": "SUPPORTED",
+      "passage": "The Aster sensor operates at a frequency of 20 hertz.",
+      "claim": "The operating frequency of the Aster sensor is 20 hertz.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "fn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The operating frequency of the Aster sensor is 20 hertz [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.7143,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "low_overlap_paraphrase-1",
+      "family": "low_overlap_paraphrase",
+      "expected": "SUPPORTED",
+      "passage": "The Aster device is waterproof.",
+      "claim": "Water cannot penetrate the Aster device.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "fn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "Water cannot penetrate the Aster device [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.3333,
+          "status": "PARTIAL",
+          "reason": "some overlap exists, but support is incomplete"
+        }
+      ]
+    },
+    {
+      "id": "numeric_conflict-1",
+      "family": "numeric_conflict",
+      "expected": "UNSUPPORTED",
+      "passage": "The Aster trial enrolled 20 participants.",
+      "claim": "The Aster trial enrolled 90 participants.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Aster trial enrolled 90 participants [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6667,
+          "status": "CONTRADICTED",
+          "reason": "incompatible numeric values: claim=['90'], passage=['20']"
+        }
+      ]
+    },
+    {
+      "id": "negation-1",
+      "family": "negation",
+      "expected": "UNSUPPORTED",
+      "passage": "The Aster device does not support encryption.",
+      "claim": "The Aster device supports encryption.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Aster device supports encryption [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "entity_swap-1",
+      "family": "entity_swap",
+      "expected": "UNSUPPORTED",
+      "passage": "The Aster device supports encryption.",
+      "claim": "The Juniper device supports encryption.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Juniper device supports encryption [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "partial-1",
+      "family": "partial",
+      "expected": "UNSUPPORTED",
+      "passage": "The Aster trial enrolled 20 participants.",
+      "claim": "The Aster trial enrolled 20 participants and proved treatment effectiveness.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Aster trial enrolled 20 participants and proved treatment effectiveness [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.5556,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "causal-1",
+      "family": "causal",
+      "expected": "UNSUPPORTED",
+      "passage": "The Aster trial found an association but cannot establish causation.",
+      "claim": "The Aster treatment caused the observed improvement.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Aster treatment caused the observed improvement [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.1667,
+          "status": "CONTRADICTED",
+          "reason": "claim asserts causation where the cited evidence explicitly withholds causal inference"
+        }
+      ]
+    },
+    {
+      "id": "scope-1",
+      "family": "scope",
+      "expected": "UNSUPPORTED",
+      "passage": "The Aster result is limited to selected cases.",
+      "claim": "The Aster result applies to all populations.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Aster result applies to all populations [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.4,
+          "status": "CONTRADICTED",
+          "reason": "claim exceeds an explicit scope or comparability limitation in the cited evidence"
+        }
+      ]
+    },
+    {
+      "id": "absent-1",
+      "family": "absent",
+      "expected": "UNSUPPORTED",
+      "passage": "The Aster report does not provide performance data.",
+      "claim": "The Aster report provides performance data.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Aster report provides performance data [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6667,
+          "status": "NEUTRAL",
+          "reason": "cited passage is topically related but explicitly states that the required evidence is absent"
+        }
+      ]
+    },
+    {
+      "id": "direction-1",
+      "family": "direction",
+      "expected": "UNSUPPORTED",
+      "passage": "The Aster rate increased from 20 to 90 percent.",
+      "claim": "The Aster rate decreased from 90 to 20 percent.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Aster rate decreased from 90 to 20 percent [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.7143,
+          "status": "CONTRADICTED",
+          "reason": "directional numeric relation is reversed: claim=['90', '20'], passage=['20', '90']"
+        }
+      ]
+    },
+    {
+      "id": "extra_property-1",
+      "family": "extra_property",
+      "expected": "UNSUPPORTED",
+      "passage": "The Aster device supports encryption.",
+      "claim": "The Aster device supports encryption and biometric authentication.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Aster device supports encryption and biometric authentication [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.5714,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "direct-2",
+      "family": "direct",
+      "expected": "SUPPORTED",
+      "passage": "The Birch trial enrolled 27 participants.",
+      "claim": "The Birch trial enrolled 27 participants.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "QUALIFIED",
+      "category": "tp",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Birch trial enrolled 27 participants [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.8333,
+          "status": "SUPPORTED",
+          "reason": "cited passage clears bounded lexical-support threshold after contradiction and neutral-evidence checks"
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-2",
+      "family": "paraphrase",
+      "expected": "SUPPORTED",
+      "passage": "The Birch sensor operates at a frequency of 27 hertz.",
+      "claim": "The operating frequency of the Birch sensor is 27 hertz.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "fn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The operating frequency of the Birch sensor is 27 hertz [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.7143,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "low_overlap_paraphrase-2",
+      "family": "low_overlap_paraphrase",
+      "expected": "SUPPORTED",
+      "passage": "The Birch device is waterproof.",
+      "claim": "Water cannot penetrate the Birch device.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "fn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "Water cannot penetrate the Birch device [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.3333,
+          "status": "PARTIAL",
+          "reason": "some overlap exists, but support is incomplete"
+        }
+      ]
+    },
+    {
+      "id": "numeric_conflict-2",
+      "family": "numeric_conflict",
+      "expected": "UNSUPPORTED",
+      "passage": "The Birch trial enrolled 27 participants.",
+      "claim": "The Birch trial enrolled 99 participants.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Birch trial enrolled 99 participants [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6667,
+          "status": "CONTRADICTED",
+          "reason": "incompatible numeric values: claim=['99'], passage=['27']"
+        }
+      ]
+    },
+    {
+      "id": "negation-2",
+      "family": "negation",
+      "expected": "UNSUPPORTED",
+      "passage": "The Birch device does not support encryption.",
+      "claim": "The Birch device supports encryption.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Birch device supports encryption [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "entity_swap-2",
+      "family": "entity_swap",
+      "expected": "UNSUPPORTED",
+      "passage": "The Birch device supports encryption.",
+      "claim": "The Maple device supports encryption.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Maple device supports encryption [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "partial-2",
+      "family": "partial",
+      "expected": "UNSUPPORTED",
+      "passage": "The Birch trial enrolled 27 participants.",
+      "claim": "The Birch trial enrolled 27 participants and proved treatment effectiveness.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Birch trial enrolled 27 participants and proved treatment effectiveness [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.5556,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "causal-2",
+      "family": "causal",
+      "expected": "UNSUPPORTED",
+      "passage": "The Birch trial found an association but cannot establish causation.",
+      "claim": "The Birch treatment caused the observed improvement.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Birch treatment caused the observed improvement [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.1667,
+          "status": "CONTRADICTED",
+          "reason": "claim asserts causation where the cited evidence explicitly withholds causal inference"
+        }
+      ]
+    },
+    {
+      "id": "scope-2",
+      "family": "scope",
+      "expected": "UNSUPPORTED",
+      "passage": "The Birch result is limited to selected cases.",
+      "claim": "The Birch result applies to all populations.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Birch result applies to all populations [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.4,
+          "status": "CONTRADICTED",
+          "reason": "claim exceeds an explicit scope or comparability limitation in the cited evidence"
+        }
+      ]
+    },
+    {
+      "id": "absent-2",
+      "family": "absent",
+      "expected": "UNSUPPORTED",
+      "passage": "The Birch report does not provide performance data.",
+      "claim": "The Birch report provides performance data.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Birch report provides performance data [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6667,
+          "status": "NEUTRAL",
+          "reason": "cited passage is topically related but explicitly states that the required evidence is absent"
+        }
+      ]
+    },
+    {
+      "id": "direction-2",
+      "family": "direction",
+      "expected": "UNSUPPORTED",
+      "passage": "The Birch rate increased from 27 to 99 percent.",
+      "claim": "The Birch rate decreased from 99 to 27 percent.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Birch rate decreased from 99 to 27 percent [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.7143,
+          "status": "CONTRADICTED",
+          "reason": "directional numeric relation is reversed: claim=['99', '27'], passage=['27', '99']"
+        }
+      ]
+    },
+    {
+      "id": "extra_property-2",
+      "family": "extra_property",
+      "expected": "UNSUPPORTED",
+      "passage": "The Birch device supports encryption.",
+      "claim": "The Birch device supports encryption and biometric authentication.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Birch device supports encryption and biometric authentication [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.5714,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "direct-3",
+      "family": "direct",
+      "expected": "SUPPORTED",
+      "passage": "The Cedar trial enrolled 34 participants.",
+      "claim": "The Cedar trial enrolled 34 participants.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "QUALIFIED",
+      "category": "tp",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Cedar trial enrolled 34 participants [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.8333,
+          "status": "SUPPORTED",
+          "reason": "cited passage clears bounded lexical-support threshold after contradiction and neutral-evidence checks"
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-3",
+      "family": "paraphrase",
+      "expected": "SUPPORTED",
+      "passage": "The Cedar sensor operates at a frequency of 34 hertz.",
+      "claim": "The operating frequency of the Cedar sensor is 34 hertz.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "fn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The operating frequency of the Cedar sensor is 34 hertz [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.7143,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "low_overlap_paraphrase-3",
+      "family": "low_overlap_paraphrase",
+      "expected": "SUPPORTED",
+      "passage": "The Cedar device is waterproof.",
+      "claim": "Water cannot penetrate the Cedar device.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "fn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "Water cannot penetrate the Cedar device [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.3333,
+          "status": "PARTIAL",
+          "reason": "some overlap exists, but support is incomplete"
+        }
+      ]
+    },
+    {
+      "id": "numeric_conflict-3",
+      "family": "numeric_conflict",
+      "expected": "UNSUPPORTED",
+      "passage": "The Cedar trial enrolled 34 participants.",
+      "claim": "The Cedar trial enrolled 108 participants.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Cedar trial enrolled 108 participants [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6667,
+          "status": "CONTRADICTED",
+          "reason": "incompatible numeric values: claim=['108'], passage=['34']"
+        }
+      ]
+    },
+    {
+      "id": "negation-3",
+      "family": "negation",
+      "expected": "UNSUPPORTED",
+      "passage": "The Cedar device does not support encryption.",
+      "claim": "The Cedar device supports encryption.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Cedar device supports encryption [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "entity_swap-3",
+      "family": "entity_swap",
+      "expected": "UNSUPPORTED",
+      "passage": "The Cedar device supports encryption.",
+      "claim": "The Oak device supports encryption.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Oak device supports encryption [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "partial-3",
+      "family": "partial",
+      "expected": "UNSUPPORTED",
+      "passage": "The Cedar trial enrolled 34 participants.",
+      "claim": "The Cedar trial enrolled 34 participants and proved treatment effectiveness.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Cedar trial enrolled 34 participants and proved treatment effectiveness [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.5556,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "causal-3",
+      "family": "causal",
+      "expected": "UNSUPPORTED",
+      "passage": "The Cedar trial found an association but cannot establish causation.",
+      "claim": "The Cedar treatment caused the observed improvement.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Cedar treatment caused the observed improvement [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.1667,
+          "status": "CONTRADICTED",
+          "reason": "claim asserts causation where the cited evidence explicitly withholds causal inference"
+        }
+      ]
+    },
+    {
+      "id": "scope-3",
+      "family": "scope",
+      "expected": "UNSUPPORTED",
+      "passage": "The Cedar result is limited to selected cases.",
+      "claim": "The Cedar result applies to all populations.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Cedar result applies to all populations [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.4,
+          "status": "CONTRADICTED",
+          "reason": "claim exceeds an explicit scope or comparability limitation in the cited evidence"
+        }
+      ]
+    },
+    {
+      "id": "absent-3",
+      "family": "absent",
+      "expected": "UNSUPPORTED",
+      "passage": "The Cedar report does not provide performance data.",
+      "claim": "The Cedar report provides performance data.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Cedar report provides performance data [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6667,
+          "status": "NEUTRAL",
+          "reason": "cited passage is topically related but explicitly states that the required evidence is absent"
+        }
+      ]
+    },
+    {
+      "id": "direction-3",
+      "family": "direction",
+      "expected": "UNSUPPORTED",
+      "passage": "The Cedar rate increased from 34 to 108 percent.",
+      "claim": "The Cedar rate decreased from 108 to 34 percent.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Cedar rate decreased from 108 to 34 percent [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.7143,
+          "status": "CONTRADICTED",
+          "reason": "directional numeric relation is reversed: claim=['108', '34'], passage=['34', '108']"
+        }
+      ]
+    },
+    {
+      "id": "extra_property-3",
+      "family": "extra_property",
+      "expected": "UNSUPPORTED",
+      "passage": "The Cedar device supports encryption.",
+      "claim": "The Cedar device supports encryption and biometric authentication.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Cedar device supports encryption and biometric authentication [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.5714,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "direct-4",
+      "family": "direct",
+      "expected": "SUPPORTED",
+      "passage": "The Dahlia trial enrolled 41 participants.",
+      "claim": "The Dahlia trial enrolled 41 participants.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "QUALIFIED",
+      "category": "tp",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Dahlia trial enrolled 41 participants [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.8333,
+          "status": "SUPPORTED",
+          "reason": "cited passage clears bounded lexical-support threshold after contradiction and neutral-evidence checks"
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-4",
+      "family": "paraphrase",
+      "expected": "SUPPORTED",
+      "passage": "The Dahlia sensor operates at a frequency of 41 hertz.",
+      "claim": "The operating frequency of the Dahlia sensor is 41 hertz.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "fn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The operating frequency of the Dahlia sensor is 41 hertz [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.7143,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "low_overlap_paraphrase-4",
+      "family": "low_overlap_paraphrase",
+      "expected": "SUPPORTED",
+      "passage": "The Dahlia device is waterproof.",
+      "claim": "Water cannot penetrate the Dahlia device.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "fn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "Water cannot penetrate the Dahlia device [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.3333,
+          "status": "PARTIAL",
+          "reason": "some overlap exists, but support is incomplete"
+        }
+      ]
+    },
+    {
+      "id": "numeric_conflict-4",
+      "family": "numeric_conflict",
+      "expected": "UNSUPPORTED",
+      "passage": "The Dahlia trial enrolled 41 participants.",
+      "claim": "The Dahlia trial enrolled 117 participants.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Dahlia trial enrolled 117 participants [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6667,
+          "status": "CONTRADICTED",
+          "reason": "incompatible numeric values: claim=['117'], passage=['41']"
+        }
+      ]
+    },
+    {
+      "id": "negation-4",
+      "family": "negation",
+      "expected": "UNSUPPORTED",
+      "passage": "The Dahlia device does not support encryption.",
+      "claim": "The Dahlia device supports encryption.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Dahlia device supports encryption [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "entity_swap-4",
+      "family": "entity_swap",
+      "expected": "UNSUPPORTED",
+      "passage": "The Dahlia device supports encryption.",
+      "claim": "The Pine device supports encryption.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Pine device supports encryption [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "partial-4",
+      "family": "partial",
+      "expected": "UNSUPPORTED",
+      "passage": "The Dahlia trial enrolled 41 participants.",
+      "claim": "The Dahlia trial enrolled 41 participants and proved treatment effectiveness.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Dahlia trial enrolled 41 participants and proved treatment effectiveness [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.5556,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "causal-4",
+      "family": "causal",
+      "expected": "UNSUPPORTED",
+      "passage": "The Dahlia trial found an association but cannot establish causation.",
+      "claim": "The Dahlia treatment caused the observed improvement.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Dahlia treatment caused the observed improvement [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.1667,
+          "status": "CONTRADICTED",
+          "reason": "claim asserts causation where the cited evidence explicitly withholds causal inference"
+        }
+      ]
+    },
+    {
+      "id": "scope-4",
+      "family": "scope",
+      "expected": "UNSUPPORTED",
+      "passage": "The Dahlia result is limited to selected cases.",
+      "claim": "The Dahlia result applies to all populations.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Dahlia result applies to all populations [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.4,
+          "status": "CONTRADICTED",
+          "reason": "claim exceeds an explicit scope or comparability limitation in the cited evidence"
+        }
+      ]
+    },
+    {
+      "id": "absent-4",
+      "family": "absent",
+      "expected": "UNSUPPORTED",
+      "passage": "The Dahlia report does not provide performance data.",
+      "claim": "The Dahlia report provides performance data.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Dahlia report provides performance data [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6667,
+          "status": "NEUTRAL",
+          "reason": "cited passage is topically related but explicitly states that the required evidence is absent"
+        }
+      ]
+    },
+    {
+      "id": "direction-4",
+      "family": "direction",
+      "expected": "UNSUPPORTED",
+      "passage": "The Dahlia rate increased from 41 to 117 percent.",
+      "claim": "The Dahlia rate decreased from 117 to 41 percent.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Dahlia rate decreased from 117 to 41 percent [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.7143,
+          "status": "CONTRADICTED",
+          "reason": "directional numeric relation is reversed: claim=['117', '41'], passage=['41', '117']"
+        }
+      ]
+    },
+    {
+      "id": "extra_property-4",
+      "family": "extra_property",
+      "expected": "UNSUPPORTED",
+      "passage": "The Dahlia device supports encryption.",
+      "claim": "The Dahlia device supports encryption and biometric authentication.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Dahlia device supports encryption and biometric authentication [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.5714,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "direct-5",
+      "family": "direct",
+      "expected": "SUPPORTED",
+      "passage": "The Elm trial enrolled 48 participants.",
+      "claim": "The Elm trial enrolled 48 participants.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "QUALIFIED",
+      "category": "tp",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Elm trial enrolled 48 participants [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.8333,
+          "status": "SUPPORTED",
+          "reason": "cited passage clears bounded lexical-support threshold after contradiction and neutral-evidence checks"
+        }
+      ]
+    },
+    {
+      "id": "paraphrase-5",
+      "family": "paraphrase",
+      "expected": "SUPPORTED",
+      "passage": "The Elm sensor operates at a frequency of 48 hertz.",
+      "claim": "The operating frequency of the Elm sensor is 48 hertz.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "fn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The operating frequency of the Elm sensor is 48 hertz [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.7143,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "low_overlap_paraphrase-5",
+      "family": "low_overlap_paraphrase",
+      "expected": "SUPPORTED",
+      "passage": "The Elm device is waterproof.",
+      "claim": "Water cannot penetrate the Elm device.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "fn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "Water cannot penetrate the Elm device [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.3333,
+          "status": "PARTIAL",
+          "reason": "some overlap exists, but support is incomplete"
+        }
+      ]
+    },
+    {
+      "id": "numeric_conflict-5",
+      "family": "numeric_conflict",
+      "expected": "UNSUPPORTED",
+      "passage": "The Elm trial enrolled 48 participants.",
+      "claim": "The Elm trial enrolled 126 participants.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Elm trial enrolled 126 participants [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6667,
+          "status": "CONTRADICTED",
+          "reason": "incompatible numeric values: claim=['126'], passage=['48']"
+        }
+      ]
+    },
+    {
+      "id": "negation-5",
+      "family": "negation",
+      "expected": "UNSUPPORTED",
+      "passage": "The Elm device does not support encryption.",
+      "claim": "The Elm device supports encryption.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Elm device supports encryption [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "entity_swap-5",
+      "family": "entity_swap",
+      "expected": "UNSUPPORTED",
+      "passage": "The Elm device supports encryption.",
+      "claim": "The Willow device supports encryption.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Willow device supports encryption [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "partial-5",
+      "family": "partial",
+      "expected": "UNSUPPORTED",
+      "passage": "The Elm trial enrolled 48 participants.",
+      "claim": "The Elm trial enrolled 48 participants and proved treatment effectiveness.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Elm trial enrolled 48 participants and proved treatment effectiveness [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.5556,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    },
+    {
+      "id": "causal-5",
+      "family": "causal",
+      "expected": "UNSUPPORTED",
+      "passage": "The Elm trial found an association but cannot establish causation.",
+      "claim": "The Elm treatment caused the observed improvement.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Elm treatment caused the observed improvement [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.1667,
+          "status": "CONTRADICTED",
+          "reason": "claim asserts causation where the cited evidence explicitly withholds causal inference"
+        }
+      ]
+    },
+    {
+      "id": "scope-5",
+      "family": "scope",
+      "expected": "UNSUPPORTED",
+      "passage": "The Elm result is limited to selected cases.",
+      "claim": "The Elm result applies to all populations.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Elm result applies to all populations [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.4,
+          "status": "CONTRADICTED",
+          "reason": "claim exceeds an explicit scope or comparability limitation in the cited evidence"
+        }
+      ]
+    },
+    {
+      "id": "absent-5",
+      "family": "absent",
+      "expected": "UNSUPPORTED",
+      "passage": "The Elm report does not provide performance data.",
+      "claim": "The Elm report provides performance data.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Elm report provides performance data [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.6667,
+          "status": "NEUTRAL",
+          "reason": "cited passage is topically related but explicitly states that the required evidence is absent"
+        }
+      ]
+    },
+    {
+      "id": "direction-5",
+      "family": "direction",
+      "expected": "UNSUPPORTED",
+      "passage": "The Elm rate increased from 48 to 126 percent.",
+      "claim": "The Elm rate decreased from 126 to 48 percent.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Elm rate decreased from 126 to 48 percent [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.7143,
+          "status": "CONTRADICTED",
+          "reason": "directional numeric relation is reversed: claim=['126', '48'], passage=['48', '126']"
+        }
+      ]
+    },
+    {
+      "id": "extra_property-5",
+      "family": "extra_property",
+      "expected": "UNSUPPORTED",
+      "passage": "The Elm device supports encryption.",
+      "claim": "The Elm device supports encryption and biometric authentication.",
+      "label_basis": "Authored synthetic entailment contrast; no independent human adjudication",
+      "predicted_decision": "INSUFFICIENT_EVIDENCE",
+      "category": "tn",
+      "claim_results": [
+        {
+          "claim_id": "C1",
+          "text": "The Elm device supports encryption and biometric authentication [S].",
+          "citations": [
+            "S"
+          ],
+          "support_score": 0.5714,
+          "status": "REVIEW_REQUIRED",
+          "reason": "Lexical similarity alone cannot establish semantic support; reviewer must adjudicate."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+$ python -m unittest discover -s tests -v
+test_altered_retrieved_passage_safe_stops (test_evaluator.EvaluationTests.test_altered_retrieved_passage_safe_stops) ... ok
+test_answer_without_material_claim_safe_stops (test_evaluator.EvaluationTests.test_answer_without_material_claim_safe_stops) ... ok
+test_approval_cannot_override_material_contradiction (test_evaluator.EvaluationTests.test_approval_cannot_override_material_contradiction) ... ok
+test_audit_ends_with_authority_decision (test_evaluator.EvaluationTests.test_audit_ends_with_authority_decision) ... ok
+test_explicit_context_truncation_is_qualified (test_evaluator.EvaluationTests.test_explicit_context_truncation_is_qualified) ... ok
+test_fabio_causal_overclaim_is_contradicted (test_evaluator.EvaluationTests.test_fabio_causal_overclaim_is_contradicted) ... ok
+test_fabio_directional_numeric_inversion_is_contradicted (test_evaluator.EvaluationTests.test_fabio_directional_numeric_inversion_is_contradicted) ... ok
+test_fabio_explicit_no_causation_is_not_supported (test_evaluator.EvaluationTests.test_fabio_explicit_no_causation_is_not_supported) ... ok
+test_fabio_related_but_absent_evidence_is_neutral (test_evaluator.EvaluationTests.test_fabio_related_but_absent_evidence_is_neutral) ... ok
+test_fabio_scope_overreach_is_not_supported (test_evaluator.EvaluationTests.test_fabio_scope_overreach_is_not_supported) ... ok
+test_incomplete_task_safe_stops (test_evaluator.EvaluationTests.test_incomplete_task_safe_stops) ... ok
+test_low_authority_is_qualified_for_high_consequence (test_evaluator.EvaluationTests.test_low_authority_is_qualified_for_high_consequence) ... ok
+test_low_consequence_supported_answer_can_record_publication_approval (test_evaluator.EvaluationTests.test_low_consequence_supported_answer_can_record_publication_approval) ... ok
+test_no_sources_safe_stops (test_evaluator.EvaluationTests.test_no_sources_safe_stops) ... ok
+test_novel_guaranteed_safety_claim_is_unsupported (test_evaluator.EvaluationTests.test_novel_guaranteed_safety_claim_is_unsupported) ... ok
+test_numeric_conflict_is_detected (test_evaluator.EvaluationTests.test_numeric_conflict_is_detected) ... ok
+test_reference_answer_supported_but_not_authorised (test_evaluator.EvaluationTests.test_reference_answer_supported_but_not_authorised) ... ok
+test_required_retrieval_omission_safe_stops (test_evaluator.EvaluationTests.test_required_retrieval_omission_safe_stops) ... ok
+test_stale_evidence_is_qualified (test_evaluator.EvaluationTests.test_stale_evidence_is_qualified) ... ok
+test_tampered_source_fails_closed (test_evaluator.EvaluationTests.test_tampered_source_fails_closed) ... ok
+test_uncited_claim_is_insufficient (test_evaluator.EvaluationTests.test_uncited_claim_is_insufficient) ... ok
+test_unknown_citation_fails_closed (test_evaluator.EvaluationTests.test_unknown_citation_fails_closed) ... ok
+test_approval_never_grants_publication (test_review.ReviewTests.test_approval_never_grants_publication) ... ok
+test_integrity_failure_still_blocks (test_review.ReviewTests.test_integrity_failure_still_blocks) ... ok
+test_nonexact_support_needs_review (test_review.ReviewTests.test_nonexact_support_needs_review) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.007s
+
+OK
+
+Exit: 0
