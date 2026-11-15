@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CVDNA Evidence Record v1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "document_id",
+    "source_uri",
+    "source_type",
+    "publisher_or_owner",
+    "retrieved_at_utc",
+    "content_sha256",
+    "chunk_id",
+    "chunk_locator",
+    "chunk_text_sha256",
+    "retrieval_method",
+    "access_rights"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "document_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_uri": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "publisher_or_owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "retrieved_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "published_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "content_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "chunk_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "chunk_locator": {
+      "type": "string",
+      "minLength": 1
+    },
+    "chunk_text_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "retrieval_method": {
+      "type": "string",
+      "minLength": 1
+    },
+    "retrieval_score": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "rerank_score": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "trust_notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "access_rights": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supersedes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "dependency_group": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
